@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import AppRichComponent from './AppRichComponent';
+import AppRichComponent from './AppDumbComponent'
+// import AppRichComponent from './AppRichComponent';
 // import './index.css';
 // import App from './App';
 // import * as serviceWorker from './serviceWorker';
