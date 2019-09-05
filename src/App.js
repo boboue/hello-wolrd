@@ -1,6 +1,7 @@
 import React from 'react';
-import {Header} from './Components/header'
-import {Items} from './Components/items'
+// import {Header} from './Components/header'
+// import {Items} from './Components/items'
+import {Header, Items} from './Components';
 
 function App() {
   return (
