@@ -1,12 +1,15 @@
 import React from 'react';
 import {Header} from './Components/header'
-import './App.css';
+import {Items} from './Components/items'
 
 function App() {
   return (
-    <div className="App">
-     <Header/>
-    </div>
+    <>
+      <Header />
+      <div className="container">
+        <Items />
+      </div>
+    </>
   );
 }
 
