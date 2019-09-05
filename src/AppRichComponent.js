@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 class AppRichComponent extends Component {
     render(){
         return (<>
-        <h1>Hello World</h1>
+        <h1>Hello W</h1>
         </>);
     }
 }
