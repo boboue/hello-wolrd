@@ -1,74 +1,63 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { ListGroup, ListGroupItem, Button } from "reactstrap";
 import { AddItemForm } from "./addItemForm";
 
-class Items extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isCheck: true,
-      isAddItemOpen: false,
-      todoList: [
-        "Estudier React",
-        "Laver Lévi",
-        "Emener le pain-embolozo à YUMBA"
-      ]
-    };
+const Items = () => {
+  const [isCheck, setIsCheck] = useState(true);
+  const [isAddItemOpen, setIsAddItemOpen] = useState(false);
+  const [todoList, setTodoList] = useState([
+    "Estudier React",
+    "Laver Lévi",
+    "Emener le pain-embolozo à YUMBA"
+  ]);
 
-    this.handleInputChange = this.handleInputChange.bind(this);
-    this.openAddItemModal = this.openAddItemModal.bind(this);    
-    this.addTodoItem = this.addTodoItem.bind(this);   
-    this.closeAddItemModal = this.closeAddItemModal.bind(this);
-  }
+  const handleInputChange = event => {
+    setIsCheck(event.target.checked);
+  };
 
-  handleInputChange(event) {
-    this.setState({ isCheck: event.target.checked });
-  }
+  const openAddItemModal = () => {
+    setIsAddItemOpen(true);
+  };
 
-  openAddItemModal() {
-    this.setState({ isAddItemOpen: true });
-  }
+  const closeAddItemModal = () => {
+    setIsAddItemOpen(false);
+  };
 
-  closeAddItemModal() {
-    this.setState({ isAddItemOpen: false });
-  }
+  const addTodoItem = item => {
+    setTodoList([...todoList, item]);
+  };
 
-  addTodoItem(item){    
-    debugger
-    this.setState({todoList: [...this.state.todoList, item]})
-  }
-
-  listGroupItem(){     
-    return this.state.todoList.map(item => {
+  const listGroupItem = () => {
+    return todoList.map(item => {
       return (
         <ListGroupItem key={item}>
           <input
             type="checkbox"
-            checked={this.state.isCheck}
-            onChange={this.handleInputChange}
+            checked={isCheck}
+            onChange={handleInputChange}
           />
           {item}
         </ListGroupItem>
       );
     });
-}
+  };
 
-  render() {
-    return (
-      <>
-        <Button color="primary" onClick={this.openAddItemModal}>
-          Ajouter
-        </Button>
-        <br />
-        <br />
-        <ListGroup>
-          {this.listGroupItem()}
-        </ListGroup>
+  return (
+    <>
+      <Button color="primary" onClick={openAddItemModal}>
+        Ajouter
+      </Button>
+      <br />
+      <br />
+      <ListGroup>{listGroupItem()}</ListGroup>
 
-        <AddItemForm isOpen={this.state.isAddItemOpen} addTodoItem={this.addTodoItem} closeAddItemModal={this.closeAddItemModal} />
-      </>
-    );
-  }
-}
+      <AddItemForm
+        isOpen={isAddItemOpen}
+        addTodoItem={addTodoItem}
+        closeAddItemModal={closeAddItemModal}
+      />
+    </>
+  );
+};
 
 export { Items };
